@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react";
-import { Product } from "../models/product";
+import Catalog from "../../features/catalog/Catalog";
+import Header from "./Header";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Container } from "@mui/system";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/products')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-  }, [])
-
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      background: {
+        default: '#dedede'
+      }
+    }
+  })
   return (
-    <div>
-      <h1>DD Web App</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.name} - {product.price}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header />
+        <Container >
+          <Catalog />
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }
 
