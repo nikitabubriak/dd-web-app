@@ -12,28 +12,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import CartPage from "../../features/cart/CartPage";
-import { useStoreContext } from "../context/StoreContext";
 import { useEffect, useState } from "react";
 import { getCookie } from "../util/util";
 import agent from "../../app/api/agent";
 import LoadingComponent from "./LoadingComponent";
 import Checkout from "../../features/checkout/Checkout";
+import { useAppDispatch } from "../store/configureStore";
+import { setCart } from "../../features/cart/cartSlice";
 
 function App() {
-  const { setCart } = useStoreContext();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const customerId = getCookie('customerId');
     if (customerId) {
       agent.Cart.get()
-        .then(cart => setCart(cart))
+        .then(cart => dispatch(setCart(cart)))
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
-  }, [setCart]);
+  }, [dispatch]);
 
   if (loading) return <LoadingComponent message='Loading app...' />
 

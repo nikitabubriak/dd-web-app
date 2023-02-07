@@ -36,7 +36,7 @@ namespace API.Controllers
             if (cart == null) cart = CreateCart();
 
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) return NotFound();
+            if (product == null) return BadRequest(new ProblemDetails { Title = "Couldn't find this item to add to cart." });
 
             cart.AddItem(product, quantity);
 
