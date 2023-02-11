@@ -48,6 +48,42 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "api",
+            "type": "shell",
+            "command": "cd api && dotnet watch run",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build"
+            }
+        },
+        {
+            "label": "client",
+            "type": "shell",
+            "command": "cd client && npm start",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build"
+            }
+        },
+        {
+            "label": "start",
+            "dependsOn": [
+                "api",
+                "client"
+            ],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         }
     ]
 }
