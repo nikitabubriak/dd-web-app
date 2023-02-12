@@ -17,7 +17,7 @@ export default function ProductCard({ product }: Props) {
     return (
         <Card>
             <CardMedia
-                sx={{ height: 140, backgroundSize: 'contain', bgcolor: 'primary.dark' }}
+                sx={{ height: 140, backgroundSize: 'contain', bgcolor: 'primary.light' }}
                 image={product.pictureUrl}
                 title={product.name}
             />

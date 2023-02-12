@@ -41,6 +41,18 @@ function App() {
   const theme = createTheme({
     palette: {
       mode: 'light',
+      primary: {
+        light: '#62727b',
+        main: '#37474f',
+        dark: '#102027',
+        contrastText: '#ffffff',
+      },
+      secondary: {
+        light: '#ff5f52',
+        main: '#c62828',
+        dark: '#8e0000',
+        contrastText: '#000000',
+      },
       background: {
         default: '#dedede'
       }

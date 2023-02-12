@@ -18,8 +18,8 @@ const navStyle = {
     typography: 'h6',
     textDecoration: 'none',
     color: 'inherit',
-    '&:hover': { color: 'grey.500' },
-    '&.active': { color: 'text.secondary' }
+    '&:hover': { color: 'primary.light' },
+    '&.active': { color: 'secondary.light' }
 }
 
 export default function Header() {
@@ -44,7 +44,7 @@ export default function Header() {
 
                 <Box display='flex' alignItems='center'>
                     <IconButton component={Link} to='/cart' size='large' sx={{ color: 'inherit' }}>
-                        <Badge badgeContent={itemCount} color='secondary'>
+                        <Badge badgeContent={itemCount} color='success'>
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
