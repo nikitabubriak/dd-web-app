@@ -455,3 +455,4 @@ $RECYCLE.BIN/
 API/appsettings.json
 API/store.db-wal
 API/store.db-shm
+API/appsettings.Development.json

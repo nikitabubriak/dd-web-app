@@ -11,12 +11,13 @@ const midLinks = [
 
 const rightLinks = [
     { title: 'login', path: '/login' },
-    { title: 'register', path: '/register' },
+    { title: 'sign up', path: '/register' },
 ]
 
 const navStyle = {
     typography: 'h6',
     textDecoration: 'none',
+    'white-space': 'nowrap',
     color: 'inherit',
     '&:hover': { color: 'primary.light' },
     '&.active': { color: 'secondary.light' }

@@ -4,13 +4,35 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using API.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(StoreContext context)
+        public static async Task Initialize(StoreContext context, UserManager<User> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "mykyta",
+                    Email = "mykyta@gmail.com"
+                };
+
+                await userManager.CreateAsync(user, "$$$123Abc");
+                await userManager.AddToRoleAsync(user, "Member");
+
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@gmail.com"
+                };
+
+                await userManager.CreateAsync(admin, "$$$123Abc");
+                await userManager.AddToRolesAsync(admin, new[] { "Member", "Admin" });
+            }
+
             if (context.Products.Any()) return;
             var products = new List<Product>
             {
