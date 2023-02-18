@@ -2,6 +2,7 @@ import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, IconButton, List, ListItem, Box, Toolbar, Typography } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
+import UserMenu from "./UserMenu";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -17,7 +18,7 @@ const rightLinks = [
 const navStyle = {
     typography: 'h6',
     textDecoration: 'none',
-    'white-space': 'nowrap',
+    whiteSpace: 'nowrap',
     color: 'inherit',
     '&:hover': { color: 'primary.light' },
     '&.active': { color: 'secondary.light' }
@@ -25,6 +26,7 @@ const navStyle = {
 
 export default function Header() {
     const { cart } = useAppSelector(state => state.cart);
+    const { user } = useAppSelector(state => state.account);
     const itemCount = cart?.items.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -49,13 +51,17 @@ export default function Header() {
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
-                    <List sx={{ display: 'flex' }}>
-                        {rightLinks.map(({ title, path }) => (
-                            <ListItem component={NavLink} to={path} key={path} sx={navStyle}>
-                                {title.toUpperCase()}
-                            </ListItem>
-                        ))}
-                    </List>
+                    {user ? (
+                        <UserMenu />
+                    ) : (
+                        <List sx={{ display: 'flex' }}>
+                            {rightLinks.map(({ title, path }) => (
+                                <ListItem component={NavLink} to={path} key={path} sx={navStyle}>
+                                    {title.toUpperCase()}
+                                </ListItem>
+                            ))}
+                        </List>
+                    )}
                 </Box>
             </Toolbar>
         </AppBar >

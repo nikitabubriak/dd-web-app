@@ -12,29 +12,31 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import CartPage from "../../features/cart/CartPage";
-import { useEffect, useState } from "react";
-import { getCookie } from "../util/util";
-import agent from "../../app/api/agent";
+import { useCallback, useEffect, useState } from "react";
 import LoadingComponent from "./LoadingComponent";
 import Checkout from "../../features/checkout/Checkout";
 import { useAppDispatch } from "../store/configureStore";
-import { setCart } from "../../features/cart/cartSlice";
+import { fetchCartAsync } from "../../features/cart/cartSlice";
+import Login from "../../features/account/Login";
+import Register from "../../features/account/Register";
+import { fetchCurrentUser } from "../../features/account/accountSlice";
 
 function App() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const customerId = getCookie('customerId');
-    if (customerId) {
-      agent.Cart.get()
-        .then(cart => dispatch(setCart(cart)))
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
+  const initApp = useCallback(async () => {
+    try {
+      await dispatch(fetchCurrentUser());
+      await dispatch(fetchCartAsync());
+    } catch (error) {
+      console.log(error);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    initApp().then(() => setLoading(false))
+  }, [initApp]);
 
   if (loading) return <LoadingComponent message='Loading app...' />
 
@@ -75,6 +77,8 @@ function App() {
             <Route path='/server-error' component={ServerError} />
             <Route path='/cart' component={CartPage} />
             <Route path='/checkout' component={Checkout} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
 
             <Route component={NotFound} />
           </Switch>
