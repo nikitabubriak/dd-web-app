@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { FieldValues } from "react-hook-form/dist/types";
 import { toast } from "react-toastify";
-import { history } from "../..";
 import agent from "../../app/api/agent";
 import { User } from "../../app/models/user";
+import { router } from "../../app/router/Routes";
+import { eraseCookie } from "../../app/util/util";
 import { setCart } from "../cart/cartSlice";
 
 interface AccountState {
@@ -57,6 +58,8 @@ export const accountSlice = createSlice({
         logoutUser: (state) => {
             state.user = null;
             localStorage.removeItem('user');
+            eraseCookie('customerId');
+            router.navigate('/');
         },
         setUser: (state, action) => {
             state.user = action.payload;
@@ -70,7 +73,7 @@ export const accountSlice = createSlice({
             state.user = null;
             localStorage.removeItem('user');
             toast.error('Session token expired. You need to login again');
-            history.push('/login');
+            router.navigate('/login');
         })
         builder.addMatcher(isAnyOf(loginUser.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
             state.user = action.payload;

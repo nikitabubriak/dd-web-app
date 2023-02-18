@@ -33,7 +33,7 @@ export default function Header() {
         <AppBar position='static' sx={{ mb: 4 }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'Space-between', alignItems: 'center' }}>
 
-                <Typography variant='h6' exact component={NavLink} to={'/'} sx={navStyle}>
+                <Typography variant='h6' component={NavLink} to={'/'} sx={navStyle}>
                     DD WEB APP
                 </Typography>
 

@@ -6,14 +6,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import agent from '../../app/api/agent';
 import { toast } from 'react-toastify';
-import { history } from '../..';
 
 export default function Register() {
+    const navigate = useNavigate();
+
     const { register, handleSubmit, setError, formState: { isSubmitting, errors, isValid } } = useForm({
         mode: 'onTouched'
     });
@@ -55,7 +56,7 @@ export default function Register() {
                     onSubmit={handleSubmit(data => agent.Account.register(data)
                         .then(() => {
                             toast.success('Account successfully created. Login to proceed');
-                            history.push('/login');
+                            navigate('/login');
                         })
                         .catch(error => handleApiErrors(error)))}
                 >
