@@ -101,14 +101,14 @@ namespace API.Controllers
         {
             if (string.IsNullOrEmpty(customerId))
             {
-                Response.Cookies.Delete("cutsomerId");
+                Response.Cookies.Delete("customerId");
                 return null;
             }
 
             return await _context.Carts
                 .Include(i => i.Items)
                 .ThenInclude(p => p.Product)
-                .FirstOrDefaultAsync(c => c.CustomerId == Request.Cookies["customerId"]);
+                .FirstOrDefaultAsync(c => c.CustomerId == customerId);
         }
     }
 }

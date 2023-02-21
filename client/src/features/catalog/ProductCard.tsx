@@ -17,37 +17,30 @@ export default function ProductCard({ product }: Props) {
     return (
         <Card>
             <CardMedia
-                sx={{ height: 140, backgroundSize: 'contain', bgcolor: 'primary.light' }}
-                image={product.pictureUrl}
+                sx={{ height: 140, backgroundSize: 'contain', bgcolor: 'primary.main' }}
+                image={product.image}
                 title={product.name}
             />
             <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: 'secondary.main' }}>
-                        {product.name.charAt(0).toUpperCase()}
-                    </Avatar>
-                }
-                title={product.name}
-                titleTypographyProps={{
-                    sx: { fontWeight: 'bold', color: 'primary.main' }
-                }}
+                title={product.name} disableTypography sx={{ fontWeight: 'bold', color: 'primary.main' }}
             />
 
             <CardContent>
-                <Typography gutterBottom color='secondary' variant="h5">
+
+                <Typography variant="body2" color="text.secondary">
+                    {product.genre} / {product.theme}
+                </Typography>
+                <Typography gutterBottom color='success' variant="h5">
                     {currencyFormat(product.price)}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {product.brand} / {product.type}
-                </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", mb: 1 }}>
                 <LoadingButton
-                    loading={status === 'pendingAddItem' + product.id} size="small"
-                    onClick={() => dispatch(addItemToCartAsync({ productId: product.id }))} >
+                    loading={status === 'pendingAddItem' + product.id} size="medium" variant="contained" color="success"
+                    onClick={() => dispatch(addItemToCartAsync({ productId: product.id }))}  >
                     Add to cart
                 </LoadingButton>
-                <Button component={Link} to={`/catalog/${product.id}`} size="small">
+                <Button component={Link} to={`/catalog/${product.id}`} size="medium" variant="contained" color="primary">
                     View
                 </Button>
             </CardActions>

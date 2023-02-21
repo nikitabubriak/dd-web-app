@@ -26,7 +26,7 @@ namespace API.Controllers
             var query = _context.Products
                 .Sort(pp.OrderBy)
                 .Search(pp.SearchTerm)
-                .Filter(pp.Brands, pp.Types)
+                .Filter(pp.Themes, pp.Genres)
                 .AsQueryable();
 
             var products = await PagedList<Product>.ToPagedList(query, pp.PageNumber, pp.PageSize);
@@ -39,10 +39,10 @@ namespace API.Controllers
         [HttpGet("filters")]
         public async Task<IActionResult> GetFilters()
         {
-            var brands = await _context.Products.Select(p => p.Brand).Distinct().ToListAsync();
-            var types = await _context.Products.Select(p => p.Type).Distinct().ToListAsync();
+            var genres = await _context.Products.Select(p => p.Genre).Distinct().ToListAsync();
+            var themes = await _context.Products.Select(p => p.Theme).Distinct().ToListAsync();
 
-            return Ok(new { brands, types });
+            return Ok(new { genres, themes });
         }
 
         [HttpGet("{id}")]

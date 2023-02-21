@@ -12,36 +12,43 @@ export default function AboutPage() {
     }
 
     return (
-        <Container>
-            <Typography gutterBottom variant="h2">
-                Errors for testing purposes
+        <>
+
+            <Typography gutterBottom variant="h3">
+                Digital distribution web app solution architecture
             </Typography>
 
-            <ButtonGroup fullWidth>
-                <Button variant='contained' onClick={() =>
-                    agent.TestErrors.get400Error().catch(error => console.log(error))}>Test 400 error</Button>
-                <Button variant='contained' onClick={() =>
-                    agent.TestErrors.get401Error().catch(error => console.log(error))}>Test 401 error</Button>
-                <Button variant='contained' onClick={() =>
-                    agent.TestErrors.get404Error().catch(error => console.log(error))}>Test 404 error</Button>
-                <Button variant='contained' onClick={() =>
-                    agent.TestErrors.get500Error().catch(error => console.log(error))}>Test 500 error</Button>
-                <Button variant='contained' onClick={
-                    getValidationError}>Test validation error</Button>
-            </ButtonGroup>
+            <Container sx={{ position: "absolute", bottom: 60 }}>
+                <Typography variant="h4" textAlign="center" sx={{ mb: 4 }}>
+                    Error handling
+                </Typography>
 
-            {validationErrors.length > 0 &&
-                <Alert severity="error">
-                    <AlertTitle>Validation errors</AlertTitle>
-                    <List>
-                        {validationErrors.map(error => (
-                            <ListItem key={error}>
-                                <ListItemText>{error}</ListItemText>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Alert>
-            }
-        </Container>
+                <ButtonGroup sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
+                    <Button variant='contained' onClick={() =>
+                        agent.TestErrors.get400Error().catch(error => console.log(error))}>Test 400 error</Button>
+                    <Button variant='contained' onClick={() =>
+                        agent.TestErrors.get401Error().catch(error => console.log(error))}>Test 401 error</Button>
+                    <Button variant='contained' onClick={() =>
+                        agent.TestErrors.get404Error().catch(error => console.log(error))}>Test 404 error</Button>
+                    <Button variant='contained' onClick={() =>
+                        agent.TestErrors.get500Error().catch(error => console.log(error))}>Test 500 error</Button>
+                    <Button variant='contained' onClick={
+                        getValidationError}>Test validation error</Button>
+                </ButtonGroup>
+
+                {validationErrors.length > 0 &&
+                    <Alert severity="error" sx={{ mt: 5 }}>
+                        <AlertTitle>Validation errors</AlertTitle>
+                        <List>
+                            {validationErrors.map(error => (
+                                <ListItem key={error}>
+                                    <ListItemText>{error}</ListItemText>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Alert>
+                }
+            </Container>
+        </>
     )
 }

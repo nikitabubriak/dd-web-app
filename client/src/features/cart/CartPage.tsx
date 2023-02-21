@@ -32,7 +32,7 @@ export default function CartPage() {
                             <TableRow key={item.productId} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     <Box display='flex' alignItems='center'>
-                                        <img src={item.pictureUrl} alt={item.name} style={{ height: 50, marginRight: 20 }} />
+                                        <img src={item.image} alt={item.name} style={{ height: 50, marginRight: 20 }} />
                                         <span>{item.name}</span>
                                     </Box>
                                 </TableCell>

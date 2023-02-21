@@ -30,16 +30,16 @@ namespace API.Extensions
             return query;
         }
 
-        public static IQueryable<Product> Filter(this IQueryable<Product> query, string brands, string types)
+        public static IQueryable<Product> Filter(this IQueryable<Product> query, string genres, string themes)
         {
-            var brandList = new List<string>();
-            var typeList = new List<string>();
+            var genreList = new List<string>();
+            var themeList = new List<string>();
 
-            if (!string.IsNullOrEmpty(brands)) brandList.AddRange(brands.ToLower().Split(",").ToList());
-            if (!string.IsNullOrEmpty(types)) typeList.AddRange(types.ToLower().Split(",").ToList());
+            if (!string.IsNullOrEmpty(genres)) genreList.AddRange(genres.ToLower().Split(",").ToList());
+            if (!string.IsNullOrEmpty(themes)) themeList.AddRange(themes.ToLower().Split(",").ToList());
 
-            query = query.Where(p => brandList.Count == 0 || brandList.Contains(p.Brand.ToLower()));
-            query = query.Where(p => typeList.Count == 0 || typeList.Contains(p.Type.ToLower()));
+            query = query.Where(p => genreList.Count == 0 || genreList.Contains(p.Theme.ToLower()));
+            query = query.Where(p => themeList.Count == 0 || themeList.Contains(p.Genre.ToLower()));
 
             return query;
         }

@@ -19,11 +19,11 @@ namespace API.Extensions
                 {
                     ProductId = item.ProductId,
                     Name = item.Product.Name,
+                    Image = item.Product.Image,
                     Price = item.Product.Price,
-                    PictureUrl = item.Product.PictureUrl,
-                    Type = item.Product.Type,
-                    Brand = item.Product.Brand,
-                    Quantity = item.Quantity
+                    Quantity = item.Quantity,
+                    Genre = item.Product.Genre,
+                    Theme = item.Product.Theme
                 }).ToList()
             };
         }

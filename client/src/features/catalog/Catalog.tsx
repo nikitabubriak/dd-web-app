@@ -18,7 +18,7 @@ const sortOptions = [
 export default function Catalog() {
     const dispatch = useAppDispatch();
     const products = useAppSelector(productSelectors.selectAll);
-    const { productsLoaded, filtersLoaded, brands, types, productParams, metaData } = useAppSelector(state => state.catalog);
+    const { productsLoaded, filtersLoaded, genres, themes, productParams, metaData } = useAppSelector(state => state.catalog);
 
     useEffect(() => {
         if (!productsLoaded) dispatch(fetchProductsAsync());
@@ -45,16 +45,16 @@ export default function Catalog() {
                 </Paper>
                 <Paper sx={{ mb: 2, p: 2 }}>
                     <CheckboxButtonGroup
-                        items={brands}
-                        checked={productParams.brands}
-                        onChange={(items: string[]) => dispatch(setProductParams({ brands: items }))}
+                        items={genres}
+                        checked={productParams.genres}
+                        onChange={(items: string[]) => dispatch(setProductParams({ genres: items }))}
                     />
                 </Paper>
                 <Paper sx={{ mb: 2, p: 2 }}>
                     <CheckboxButtonGroup
-                        items={types}
-                        checked={productParams.types}
-                        onChange={(items: string[]) => dispatch(setProductParams({ types: items }))}
+                        items={themes}
+                        checked={productParams.themes}
+                        onChange={(items: string[]) => dispatch(setProductParams({ themes: items }))}
                     />
                 </Paper>
             </Grid>
@@ -62,7 +62,7 @@ export default function Catalog() {
                 <ProductList products={products} />
             </Grid>
             <Grid item xs={3} />
-            <Grid item xs={9} sx={{ mb: 2 }}>
+            <Grid item xs={9} sx={{ mt: 4, mb: 4 }}>
                 {metaData &&
                     <AppPagination
                         metaData={metaData}

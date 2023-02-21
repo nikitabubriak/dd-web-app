@@ -4,7 +4,7 @@ export function getCookie(key: string) {
 }
 
 export function eraseCookie(key: string) {
-    document.cookie = key + '=; Max-Age=0'
+    document.cookie = key + '=; Max-Age=0';
 }
 
 export function currencyFormat(amount: number) {

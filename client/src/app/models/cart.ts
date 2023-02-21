@@ -7,9 +7,9 @@ export interface Cart {
 export interface CartItem {
     productId: number;
     name: string;
+    image: string;
     price: number;
-    pictureUrl: string;
-    type: string;
-    brand: string;
     quantity: number;
+    genre: string;
+    theme: string;
 }

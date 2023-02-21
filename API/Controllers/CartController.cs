@@ -88,7 +88,7 @@ namespace API.Controllers
             return await _context.Carts
                 .Include(i => i.Items)
                 .ThenInclude(p => p.Product)
-                .FirstOrDefaultAsync(c => c.CustomerId == Request.Cookies["customerId"]);
+                .FirstOrDefaultAsync(c => c.CustomerId == customerId);
         }
 
         private string GetCustomerId()
