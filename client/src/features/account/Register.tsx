@@ -118,6 +118,6 @@ export default function Register() {
                     </Grid>
                 </Box>
             </Box>
-        </Container>
+        </Container >
     );
 }

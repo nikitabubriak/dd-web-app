@@ -82,6 +82,12 @@ const Cart = {
     removeItem: (productId: number, quantity = 1) => requests.delete(`cart?productId=${productId}&quantity=${quantity}`)
 }
 
+const Orders = {
+    list: () => requests.get('orders'),
+    details: (id: number) => requests.get(`orders/${id}`),
+    create: (paymentMethod: number) => requests.post(`orders?paymentMethod=${paymentMethod}`, {})
+}
+
 const Account = {
     login: (values: any) => requests.post('account/login', values),
     register: (values: any) => requests.post('account/register', values),
@@ -92,6 +98,7 @@ const agent = {
     Catalog,
     TestErrors,
     Cart,
+    Orders,
     Account
 }
 

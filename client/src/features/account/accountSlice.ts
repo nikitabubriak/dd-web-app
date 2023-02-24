@@ -66,14 +66,14 @@ export const accountSlice = createSlice({
         }
     },
     extraReducers: (builder => {
-        builder.addCase(loginUser.rejected, (state, action) => {
-            throw action.payload;
-        })
         builder.addCase(fetchCurrentUser.rejected, (state) => {
             state.user = null;
             localStorage.removeItem('user');
             toast.error('Session token expired. You need to login again');
             router.navigate('/login');
+        })
+        builder.addCase(loginUser.rejected, (state, action) => {
+            throw action.payload;
         })
         builder.addMatcher(isAnyOf(loginUser.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
             state.user = action.payload;

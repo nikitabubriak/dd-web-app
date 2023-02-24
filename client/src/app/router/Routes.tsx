@@ -5,13 +5,15 @@ import Register from "../../features/account/Register";
 import CartPage from "../../features/cart/CartPage";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
-import Checkout from "../../features/checkout/Checkout";
+import Checkout from "../../features/orders/Checkout";
 import ContactPage from "../../features/contacts/ContactPage";
 import HomePage from "../../features/home/HomePage";
 import NotFound from "../errors/NotFound";
 import ServerError from "../errors/ServerError";
 import App from "../layout/App";
 import RequireAuth from "./RequireAuth";
+import Orders from "../../features/orders/Orders";
+import OrderDetails from "../../features/orders/OrderDetails";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +23,8 @@ export const router = createBrowserRouter([
             {
                 element: <RequireAuth />, children: [
                     { path: 'checkout', element: <Checkout /> },
+                    { path: 'orders', element: <Orders /> },
+                    { path: 'orders/:id', element: <OrderDetails /> },
                 ]
             },
             { path: '', element: <HomePage /> },

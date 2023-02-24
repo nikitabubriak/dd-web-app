@@ -39,8 +39,8 @@ export default function UserMenu() {
                     horizontal: 'left',
                 }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My orders</MenuItem>
+                <MenuItem onClick={handleClose}
+                    component={Link} to='/orders'>My orders</MenuItem>
                 <MenuItem onClick={() => {
                     dispatch(logoutUser());
                     dispatch(resetCart());

@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Container, Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
+import { Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "../../app/errors/NotFound";
@@ -47,13 +47,10 @@ export default function ProductDetails() {
             <Grid container spacing={6}>
                 <Grid item xs={6}>
                     <img src={product.image} alt={product.name} style={{ width: '100%' }} />
-                    {/* <Divider sx={{ mt: 6, mb: 6 }} /> */}
                     <Typography variant="h4" sx={{ fontWeight: 'bold', pt: 5, pb: 5 }}>{product.name}</Typography>
-
-
                 </Grid>
-                <Grid item xs={6}>
 
+                <Grid item xs={6}>
                     <TableContainer>
                         <Table>
                             <TableBody>
@@ -84,9 +81,9 @@ export default function ProductDetails() {
                             </TableBody>
                         </Table>
                     </TableContainer>
-
                 </Grid>
             </Grid>
+
             <Grid container spacing={2} sx={{ pt: 4 }}>
                 <Grid item xs={6}>
                     <Typography variant="h4" color='success'>{currencyFormat(product.price)}</Typography>

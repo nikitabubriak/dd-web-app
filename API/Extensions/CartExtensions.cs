@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -26,6 +28,14 @@ namespace API.Extensions
                     Theme = item.Product.Theme
                 }).ToList()
             };
+        }
+
+        public static async Task<Cart> LoadCart(this IQueryable<Cart> query, string customerId)
+        {
+            return await query
+                .Include(i => i.Items)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefaultAsync(c => c.CustomerId == customerId);
         }
     }
 }

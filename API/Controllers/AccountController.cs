@@ -104,11 +104,7 @@ namespace API.Controllers
                 Response.Cookies.Delete("customerId");
                 return null;
             }
-
-            return await _context.Carts
-                .Include(i => i.Items)
-                .ThenInclude(p => p.Product)
-                .FirstOrDefaultAsync(c => c.CustomerId == customerId);
+            return await _context.Carts.LoadCart(customerId);
         }
     }
 }
