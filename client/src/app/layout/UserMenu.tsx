@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../store/configureStore';
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../features/account/accountSlice';
 import { resetCart } from '../../features/cart/cartSlice';
+import { unloadOrders } from '../../features/orders/orderSlice';
 
 export default function UserMenu() {
     const { user } = useAppSelector(state => state.account);
@@ -44,6 +45,7 @@ export default function UserMenu() {
                 <MenuItem onClick={() => {
                     dispatch(logoutUser());
                     dispatch(resetCart());
+                    dispatch(unloadOrders());
                 }} component={Link} to='/'>Logout</MenuItem>
             </Menu>
         </>

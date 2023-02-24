@@ -22,12 +22,12 @@ export default function Orders() {
             <Typography component="h1" variant="h4" align="center" gutterBottom>
                 My orders
             </Typography>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{ mb: 10 }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
 
                     <TableHead>
                         <TableRow>
-                            <TableCell>Order Number</TableCell>
+                            <TableCell>Order ID</TableCell>
                             <TableCell align="right">Total</TableCell>
                             <TableCell align="right">Order Date</TableCell>
                             <TableCell align="right">Order Status</TableCell>

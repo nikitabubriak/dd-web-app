@@ -53,7 +53,7 @@ export default function Register() {
                     Register
                 </Typography>
                 <Box component="form" noValidate sx={{ mt: 1 }}
-                    onSubmit={handleSubmit(data => agent.Account.register(data)
+                    onSubmit={handleSubmit((data: any) => agent.Account.register(data)
                         .then(() => {
                             toast.success('Account successfully created. Login to proceed');
                             navigate('/login');

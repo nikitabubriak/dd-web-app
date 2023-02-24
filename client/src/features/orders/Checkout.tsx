@@ -77,7 +77,7 @@ export default function CheckoutPage() {
                         Thank you for your order!
                     </Typography>
                     <Typography variant="subtitle1">
-                        Your order number is #{orderNumber}. We have sent your ordered items to {user?.email}.
+                        Your order ID is #{orderNumber}. We have sent your ordered items to {user?.email}.
                     </Typography>
                 </Box> :
                 <>

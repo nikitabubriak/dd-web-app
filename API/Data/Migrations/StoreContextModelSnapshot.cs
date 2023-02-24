@@ -28,7 +28,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.CartItem", b =>
@@ -52,7 +52,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Order.Order", b =>
@@ -78,7 +78,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Order.OrderItem", b =>
@@ -100,7 +100,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Product", b =>
@@ -138,7 +138,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Role", b =>
@@ -373,7 +373,7 @@ namespace API.Data.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
 
-                    b.OwnsOne("API.Entities.Order.OrderProductSnapshot", "Item", b1 =>
+                    b.OwnsOne("API.Entities.Order.OrderItem.Item#API.Entities.Order.OrderProductSnapshot", "Item", b1 =>
                         {
                             b1.Property<int>("OrderItemId")
                                 .HasColumnType("INTEGER");
@@ -389,7 +389,7 @@ namespace API.Data.Migrations
 
                             b1.HasKey("OrderItemId");
 
-                            b1.ToTable("OrderItem");
+                            b1.ToTable("OrderItem", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("OrderItemId");
