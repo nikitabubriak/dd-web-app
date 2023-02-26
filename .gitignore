@@ -452,7 +452,9 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
 API/appsettings.json
 API/store.db-wal
 API/store.db-shm
 API/appsettings.Development.json
+flyctl.txt
