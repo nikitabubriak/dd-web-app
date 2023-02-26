@@ -218,9 +218,9 @@ namespace API.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ItemProductId = table.Column<int>(name: "Item_ProductId", type: "integer", nullable: true),
-                    ItemName = table.Column<string>(name: "Item_Name", type: "text", nullable: true),
-                    ItemImage = table.Column<string>(name: "Item_Image", type: "text", nullable: true),
+                    Item_ProductId = table.Column<int>(type: "integer", nullable: true),
+                    Item_Name = table.Column<string>(type: "text", nullable: true),
+                    Item_Image = table.Column<string>(type: "text", nullable: true),
                     Price = table.Column<long>(type: "bigint", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     OrderId = table.Column<int>(type: "integer", nullable: true)

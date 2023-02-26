@@ -45,8 +45,10 @@ else
     var pgDb = pgHostPortDb.Split("/")[1];
     var pgUser = pgUserPass.Split(":")[0];
     var pgPass = pgUserPass.Split(":")[1];
-    var pgHost = pgHostPort.Split(":")[0];
-    var pgPort = pgHostPort.Split(":")[1];
+    // var pgHost = pgHostPort.Substring(1, 18);
+    // var pgHost = pgHostPort.Substring(0, 20);
+    var pgHost = "arn.dd-web-app-db.internal";
+    var pgPort = pgHostPort.Substring(21);
 
     connectionString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
 }
@@ -127,3 +129,4 @@ catch (Exception ex)
 }
 
 await app.RunAsync();
+// app.Run();

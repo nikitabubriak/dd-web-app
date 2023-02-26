@@ -458,3 +458,4 @@ API/store.db-wal
 API/store.db-shm
 API/appsettings.Development.json
 flyctl.txt
+commands.txt
