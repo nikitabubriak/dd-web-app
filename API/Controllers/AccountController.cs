@@ -27,12 +27,10 @@ namespace API.Controllers
             if (anonCart != null)
             {
                 if (userCart != null)
-                {
                     _context.Carts.Remove(userCart);
-                    anonCart.CustomerId = user.UserName;
-                    Response.Cookies.Delete("customerId");
-                    await _context.SaveChangesAsync();
-                }
+                anonCart.CustomerId = user.UserName;
+                Response.Cookies.Delete("customerId");
+                await _context.SaveChangesAsync();
             }
 
             return new UserDTO

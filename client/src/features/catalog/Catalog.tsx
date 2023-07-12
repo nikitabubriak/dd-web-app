@@ -1,38 +1,30 @@
 import { Grid, Paper } from "@mui/material";
-import { useEffect } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import AppPagination from "../../components/AppPagination";
 import CheckboxButtonGroup from "../../components/CheckboxButtonGroup";
 import RadioButtonGroup from "../../components/RadioButtonGroup";
-import { fetchFiltersAsync, fetchProductsAsync, productSelectors, setPageNumber, setProductParams } from "./catalogSlice";
+import { setPageNumber, setProductParams } from "./catalogSlice";
 import ProductList from "./ProductList";
 import ProductSearch from "./ProductSearch";
+import useProducts from "../../app/hooks/useProducts";
 
 const sortOptions = [
     { value: 'name', label: 'Alphabetical' },
-    { value: 'priceDesc', label: 'Price - High to low' },
-    { value: 'priceAsc', label: 'Price - Low to high' }
+    { value: 'priceAsc', label: 'Price - Low to high' },
+    { value: 'priceDesc', label: 'Price - High to low' }
 ]
 
 export default function Catalog() {
+    const { products, filtersLoaded, genres, themes, metaData } = useProducts();
+    const { productParams } = useAppSelector(state => state.catalog);
     const dispatch = useAppDispatch();
-    const products = useAppSelector(productSelectors.selectAll);
-    const { productsLoaded, filtersLoaded, genres, themes, productParams, metaData } = useAppSelector(state => state.catalog);
-
-    useEffect(() => {
-        if (!productsLoaded) dispatch(fetchProductsAsync());
-    }, [dispatch, productsLoaded])
-
-    useEffect(() => {
-        if (!filtersLoaded) dispatch(fetchFiltersAsync());
-    }, [dispatch, filtersLoaded])
 
     if (!filtersLoaded) return <LoadingComponent message='Loading products...' />
 
     return (
-        <Grid container columnSpacing={4}>
-            <Grid item xs={3}>
+        <Grid container columnSpacing={4} >
+            <Grid item xs={12} sm={4} md={3}>
                 <Paper sx={{ mb: 2 }}>
                     <ProductSearch />
                 </Paper>
@@ -58,11 +50,11 @@ export default function Catalog() {
                     />
                 </Paper>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={12} sm={8} md={9}>
                 <ProductList products={products} />
             </Grid>
             <Grid item xs={3} />
-            <Grid item xs={9} sx={{ mt: 4, mb: 4 }}>
+            <Grid item xs={12} sm={9} sx={{ mt: 2, mb: 4 }}>
                 {metaData &&
                     <AppPagination
                         metaData={metaData}

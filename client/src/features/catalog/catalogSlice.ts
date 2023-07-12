@@ -102,6 +102,14 @@ export const catalogSlice = createSlice({
         },
         setMetaData: (state, action) => {
             state.metaData = action.payload;
+        },
+        setProduct: (state, action) => {
+            productsAdapter.upsertOne(state, action.payload);
+            state.productsLoaded = false;
+        },
+        removeProduct: (state, action) => {
+            productsAdapter.removeOne(state, action.payload);
+            state.productsLoaded = false;
         }
     },
     extraReducers: (builder => {
@@ -147,4 +155,4 @@ export const catalogSlice = createSlice({
 })
 
 export const productSelectors = productsAdapter.getSelectors((state: RootState) => state.catalog);
-export const { setProductParams, setPageNumber, resetProductParams, setMetaData } = catalogSlice.actions;
+export const { setProductParams, setPageNumber, resetProductParams, setMetaData, setProduct, removeProduct } = catalogSlice.actions;

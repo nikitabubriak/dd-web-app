@@ -14,11 +14,19 @@ export default function AboutPage() {
     return (
         <>
 
-            <Typography gutterBottom variant="h3">
-                Digital distribution web app solution architecture
+            <Typography gutterBottom variant="h3" >
+                Solution architecture for digital distribution web application
             </Typography>
 
-            <Container sx={{ position: "absolute", bottom: 60 }}>
+            <Typography paragraph={true} sx={{ mb: 100 }}>
+                Research object: Web development.
+                <br />Research subject: Digital distribution web app development processes with optimized application state management.
+                <br /><br />The purpose of the diploma project is to develop a solution architecture for a  digital distribution web app.
+                <br />The goal is to provide optimized application state management by implementing an architectural solution that simplifies writing logic, configuration and centralization of an application state, supports asynchronous requests and data normalization.
+
+            </Typography>
+
+            <Container sx={{ mb: 20 }}>
                 <Typography variant="h4" textAlign="center" sx={{ mb: 4 }}>
                     Error handling
                 </Typography>

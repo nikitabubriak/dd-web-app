@@ -43,6 +43,9 @@ namespace API.Controllers
 
             cart.RemoveItem(productId, quantity);
 
+            if (!cart.Items.Any())
+                _context.Carts.Remove(cart);
+
             var result = await _context.SaveChangesAsync();
             if (result > 0) return Ok();
 
