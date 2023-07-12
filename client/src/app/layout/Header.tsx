@@ -31,9 +31,9 @@ export default function Header() {
 
     return (
         <AppBar position='static' sx={{ mb: 4 }}>
-            <Toolbar sx={{ display: 'flex', justifyContent: 'Space-between', alignItems: 'center' }}>
+            <Toolbar sx={{ display: 'flex', justifyContent: 'Space-between', alignItems: 'center', flexDirection: { xs: "column", sm: "row" } }}>
 
-                <Typography variant='h6' component={NavLink} to={'/'} sx={navStyle}>
+                <Typography variant='h6' component={NavLink} to={'/home'} sx={navStyle}>
                     DD WEB APP
                 </Typography>
 
@@ -43,6 +43,11 @@ export default function Header() {
                             {title.toUpperCase()}
                         </ListItem>
                     ))}
+                    {user && user.roles?.includes('Admin') &&
+                        <ListItem component={NavLink} to={'/inventory'} sx={navStyle}>
+                            INVENTORY
+                        </ListItem>
+                    }
                 </List>
 
                 <Box display='flex' alignItems='center'>

@@ -79,6 +79,7 @@ export const cartSlice = createSlice({
             if (state.cart!.items[itemIndex].quantity === 0) {
                 state.cart?.items.splice(itemIndex, 1);
             }
+            if (state.cart!.items.length === 0) state.cart = null;
             state.status = 'idle';
         })
         builder.addCase(removeItemFromCartAsync.rejected, (state, action) => {

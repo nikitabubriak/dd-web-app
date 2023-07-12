@@ -40,7 +40,7 @@ export default function CartTable({ items, isCart = true }: Props) {
                                 </Box>
                             </TableCell>
                             <TableCell align="right">{currencyFormat(item.price)}</TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ minWidth: 200 }}>
                                 {isCart &&
                                     <LoadingButton
                                         loading={status === 'pendingRemoveItem' + item.productId + 'remove'}

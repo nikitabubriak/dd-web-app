@@ -45,12 +45,12 @@ export default function ProductDetails() {
     return (
         <Container component={Paper} sx={{ pt: 5, pb: 5 }}>
             <Grid container spacing={6}>
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <img src={product.image} alt={product.name} style={{ width: '100%' }} />
                     <Typography variant="h4" sx={{ fontWeight: 'bold', pt: 5, pb: 5 }}>{product.name}</Typography>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <TableContainer>
                         <Table>
                             <TableBody>
@@ -85,14 +85,14 @@ export default function ProductDetails() {
             </Grid>
 
             <Grid container spacing={2} sx={{ pt: 4 }}>
-                <Grid item xs={6}>
+                <Grid item sm={6}>
                     <Typography variant="h4" color='success'>{currencyFormat(product.price)}</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item sm={3}>
                     <TextField onChange={changeQuantityInput}
                         fullWidth variant="outlined" type="number" label="Quantity" value={quantity} />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item sm={3}>
                     <LoadingButton onClick={updateCartInput}
                         loading={cartStatus.includes('pending')}
                         disabled={item?.quantity === quantity || (!item && quantity === 0)}

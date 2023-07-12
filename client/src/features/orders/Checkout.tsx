@@ -90,7 +90,7 @@ export default function CheckoutPage() {
 
                     <Grid container spacing={2} sx={{ mt: 1, mb: 1 }}>
 
-                        <Grid item xs={6} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                                 Payment details
                             </Typography>
@@ -103,15 +103,15 @@ export default function CheckoutPage() {
                             />
                         </Grid>
 
-                        <Grid item xs={6} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                                 Delivery
                             </Typography>
                             <Grid container>
-                                <Grid item xs={6}>
+                                <Grid item sm={12} md={6}>
                                     <Typography gutterBottom>Sending email with the products to: </Typography>
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item sm={12} md={6}>
                                     <Typography gutterBottom>{user?.email}</Typography>
                                 </Grid>
                             </Grid>

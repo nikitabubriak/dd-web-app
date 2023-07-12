@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -83,6 +84,7 @@ builder.Services
 builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ImageService>();
 
 var app = builder.Build();
 
